@@ -82,3 +82,7 @@ src/
 Developer: Abdirashid Fahiye
 
 Programme: WeThinkCode_ Software Engineering (Cloud Computing Elective Project)
+
+
+## 🔐 WeThinkCode_ Verification
+Verification Code: WTC-KWYQBXQ6
