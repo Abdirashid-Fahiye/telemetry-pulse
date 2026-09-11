@@ -68,7 +68,7 @@ src/
 
 [x] Project architecture design, UML modeling, and hexagonal layout.
 
-[ ] Milestone 1: Domain record design & boundary unit testing (TDD).
+[x] Milestone 1: Domain record design & boundary unit testing (TDD).
 
 [ ] Milestone 2: Service layer ingestion orchestration with Mockito.
 
