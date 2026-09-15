@@ -70,7 +70,7 @@ src/
 
 [x] Milestone 1: Domain record design & boundary unit testing (TDD).
 
-[ ] Milestone 2: Service layer ingestion orchestration with Mockito.
+[x] Milestone 2: Service layer ingestion orchestration with Mockito.
 
 [ ] Milestone 3: LocalStack cloud container integration tests (SQS/DynamoDB/S3).
 
