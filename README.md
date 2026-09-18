@@ -72,9 +72,30 @@ src/
 
 [x] Milestone 2: Service layer ingestion orchestration with Mockito.
 
-[ ] Milestone 3: LocalStack cloud container integration tests (SQS/DynamoDB/S3).
+[x] Milestone 3: LocalStack cloud container integration tests (SQS/DynamoDB/S3).
 
 [ ] Milestone 4: Live cloud verification & technical demo recording.
+
+
+
+## 🚀 How to Run Locally (Windows & Linux)
+
+This project utilizes LocalStack version 3.0.0 to emulate AWS offline. The infrastructure is entirely containerized and designed to run cross-platform on both Windows and Linux without excessive memory consumption.
+
+### Prerequisites
+- **Windows/macOS:** Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and ensure the application is running in the background.
+- **Linux:** Install `docker` and `docker-compose` via your package manager. Ensure the Docker daemon is active (`sudo systemctl start docker`).
+
+### 1. Start the Local AWS Cloud
+Open your terminal at the root of the project and boot the offline cloud:
+```bash
+docker-compose pull
+docker-compose up -d
+
+### 2. Execute the Pipeline
+Run the integration test suite to verify the end-to-end telemetry flow:
+
+mvn clean test
 
 
 
