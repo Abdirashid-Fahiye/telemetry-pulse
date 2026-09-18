@@ -50,14 +50,24 @@ class TelemetryPulseIntegrationTest {
         // 2. Create the Cloud Infrastructure inside LocalStack
         queueUrl = sqsClient.createQueue(CreateQueueRequest.builder().queueName("test-queue").build()).queueUrl();
 
-        dynamoDbClient.createTable(CreateTableRequest.builder()
-                .tableName(TABLE_NAME)
-                .keySchema(KeySchemaElement.builder().attributeName("vehicleId").keyType(KeyType.HASH).build())
-                .attributeDefinitions(AttributeDefinition.builder().attributeName("vehicleId").attributeType(ScalarAttributeType.S).build())
-                .provisionedThroughput(ProvisionedThroughput.builder().readCapacityUnits(5L).writeCapacityUnits(5L).build())
-                .build());
+        try {
+            dynamoDbClient.createTable(CreateTableRequest.builder()
+                    .tableName(TABLE_NAME)
+                    .keySchema(KeySchemaElement.builder().attributeName("vehicleId").keyType(KeyType.HASH).build())
+                    .attributeDefinitions(AttributeDefinition.builder().attributeName("vehicleId").attributeType(ScalarAttributeType.S).build())
+                    .provisionedThroughput(ProvisionedThroughput.builder().readCapacityUnits(5L).writeCapacityUnits(5L).build())
+                    .build());
+        } catch (ResourceInUseException e) {
+            // Table already exists from a previous test run. Safely ignore and continue.
+            System.out.println("DynamoDB table already exists. Skipping creation.");
+        }
 
-        s3Client.createBucket(CreateBucketRequest.builder().bucket(BUCKET_NAME).build());
+        try {
+            s3Client.createBucket(CreateBucketRequest.builder().bucket(BUCKET_NAME).build());
+        } catch (software.amazon.awssdk.services.s3.model.S3Exception e) {
+            // Bucket already exists from a previous test run. Safely ignore and continue.
+            System.out.println("S3 bucket already exists. Skipping creation.");
+        }
     }
 
     @Test
