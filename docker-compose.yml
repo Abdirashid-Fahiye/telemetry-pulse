@@ -1,17 +1,9 @@
-version: "3.8"
-
 services:
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
-    image: localstack/localstack:latest
+    container_name: localstack-main
+    image: localstack/localstack:3.0.0
     ports:
-      - "127.0.0.1:4566:4566"            # LocalStack Gateway
-      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+      - "127.0.0.1:4566:4566"
     environment:
-      - DEBUG=1
-      - DOCKER_HOST=unix:///var/run/docker.sock
-      - AWS_DEFAULT_REGION=af-south-1    # We will use the AWS Cape Town region
-      - SERVICES=sqs,dynamodb,s3         # The 3 specific services we need
-    volumes:
-      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - SERVICES=sqs,dynamodb,s3
+      - AWS_DEFAULT_REGION=af-south-1
