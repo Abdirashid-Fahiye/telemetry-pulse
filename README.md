@@ -74,8 +74,9 @@ src/
 
 [x] Milestone 3: LocalStack cloud container integration tests (SQS/DynamoDB/S3).
 
-[x] Milestone 4: Live cloud verification & technical demo recording.
+[x] Milestone 4: Application entry point & executable Fat JAR packaging.
 
+[ ] Milestone 5: IoT telemetry traffic generator & live pipeline verification.
 
 
 ## 🚀 How to Run Locally (Windows & Linux)
@@ -92,11 +93,19 @@ Open your terminal at the root of the project and boot the offline cloud:
 docker-compose pull
 docker-compose up -d
 
-### 2. Execute the Pipeline
-Run the integration test suite to verify the end-to-end telemetry flow:
+Note: Wait approximately 10 to 15 seconds for the internal AWS services (SQS, DynamoDB, S3) to fully initialize on port 4566 before executing the application.
 
-mvn clean test
+### 2. Package the Application
+Build the executable Fat JAR containing all AWS SDK dependencies:
 
+Bash
+mvn clean package
+
+### 3. Execute the Ingestion Engine
+Start the continuous background worker to poll the AWS SQS queue for incoming telemetry data:
+
+Bash
+java -jar target/telemetry-pulse-1.0-SNAPSHOT.jar
 
 
 👤 Technical Author
