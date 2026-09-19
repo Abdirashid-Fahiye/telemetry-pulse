@@ -49,3 +49,6 @@ aws-credentials.json
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+dependency-reduced-pom.xml
+volume/
