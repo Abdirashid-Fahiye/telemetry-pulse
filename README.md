@@ -74,7 +74,7 @@ src/
 
 [x] Milestone 3: LocalStack cloud container integration tests (SQS/DynamoDB/S3).
 
-[ ] Milestone 4: Live cloud verification & technical demo recording.
+[x] Milestone 4: Live cloud verification & technical demo recording.
 
 
 
